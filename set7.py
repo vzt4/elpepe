@@ -283,7 +283,7 @@ def ojito(frase):
                 nueva += palabra[largo2-1]
             
             else:
-                print('No cumple con la condicion',nao,'vez/veces')
+                print('No se cumple con la condicion',nao,'vez/veces')
                 print('')
                 nao += 1
             
