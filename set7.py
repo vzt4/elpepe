@@ -221,7 +221,7 @@ def separar_palabras(txt):  # Separar palabras
     
     for caracter in txt:
         
-        if caracter in 'qwertyuiopasdfghjklzxcvbnm':
+        if caracter in 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM':
             nueva += caracter
             
         else:
@@ -254,11 +254,13 @@ def ojito(frase):
     nueva=''
     
     for palabra in palabras:
-        print('')
+        
+	print('')
         print('La palabra es:',palabra)
         letras = contar_letras(palabra)[0]
         print('Sus letras son:',letras)
         largo1 = len(letras)
+        largo2 = len(palabra)
         print('El largo de la palabra es:', largo1)
         valores = contar_letras(palabra)[1]
         print('Sus valores son:', valores)
@@ -269,24 +271,23 @@ def ojito(frase):
         for i in range( len(letras) ):
             print('La letra',letras[pos],'se repite',valores[pos],'vez/veces')
             
-            
-            
             if valores[pos] == 2:
                 print('Se agregara a nueva la letra "',letras[pos],'"')
                 print('')
                 nueva += letras[pos]
                 break 
+                       
+            if nao == largo1 and valores[pos] != 2:
+                print('')
+                print('Como ninguna cumple se agregara la letra "',palabra[largo2-1],'"')
+                nueva += palabra[largo2-1]
             
             else:
                 print('No cumple con la condicion',nao,'vez/veces')
                 print('')
                 nao += 1
-                
-            pos += 1 
-            if nao == largo1 and valores[pos] != 2:
-                print('')
-                print('Como ninguna cumple se agregara la letra "',letras[largo1-1],'"')
-                nueva += letras[largo1-1]
+            
+            pos += 1
     return nueva
 
 a = str(input())
