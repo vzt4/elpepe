@@ -210,7 +210,87 @@ print('Ultima posicion: Pasillo',pasillo)
 print('La desconexion mas larga duro',maximo_t,'minutos y comenzo al minuto',pos_m-maximo_t)
 
 #P8-----------------------------------------------------------------------------------------
+#IMPORTANTE !!
+# Hay que sacarle los prints, pero con ellos se entiende que wea pasa :))
 
-#AUN NO TA :)))
+# primero contar letras por palabra
+def separar_palabras(txt):  # Separar palabras
+    txt += ' '
+    palabras = []
+    nueva = ''
+    
+    for caracter in txt:
+        
+        if caracter in 'qwertyuiopasdfghjklzxcvbnm':
+            nueva += caracter
+            
+        else:
+            palabras.append(nueva)
+            nueva = ''
+            
+    return palabras
+    
+def contar_letras(txt): # Contar letras 
+    cuenta = [ [],[] ]
+    for letra in txt:
+        if letra in cuenta[0]:
+            pos = 0 
+            while cuenta[0][pos] != letra:
+                pos += 1
+            cuenta[1][pos] += 1  
+        else:
+            cuenta[0].append(letra)
+            cuenta[1].append(1)
+    
+    return cuenta
+
+# segundo, ver si cumple con:
+def ojito(frase):
+    
+    palabras = separar_palabras(frase)
+    largo = len(palabras)
+    print('El largo total es:',largo)
+    
+    nueva=''
+    
+    for palabra in palabras:
+        print('')
+        print('La palabra es:',palabra)
+        letras = contar_letras(palabra)[0]
+        print('Sus letras son:',letras)
+        largo1 = len(letras)
+        print('El largo de la palabra es:', largo1)
+        valores = contar_letras(palabra)[1]
+        print('Sus valores son:', valores)
+        print('')
+        
+        pos = 0
+        nao = 1
+        for i in range( len(letras) ):
+            print('La letra',letras[pos],'se repite',valores[pos],'vez/veces')
+            
+            
+            
+            if valores[pos] == 2:
+                print('Se agregara a nueva la letra "',letras[pos],'"')
+                print('')
+                nueva += letras[pos]
+                break 
+            
+            else:
+                print('No cumple con la condicion',nao,'vez/veces')
+                print('')
+                nao += 1
+                
+            pos += 1 
+            if nao == largo1 and valores[pos] != 2:
+                print('')
+                print('Como ninguna cumple se agregara la letra "',letras[largo1-1],'"')
+                nueva += letras[largo1-1]
+    return nueva
+
+a = str(input())
+
+print(ojito(a))
 
     
